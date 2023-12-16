@@ -146,7 +146,7 @@ Model modelTiendasSalida;
 
 
 // Modelos animados
-// Mayow
+// Main
 Model mayowModelAnimate;
 Model spiderModelAnimate;
 
@@ -344,16 +344,9 @@ float rotSpider5 = 0.50;
 float advanceCountSpider5 = 0;
 float rotCountSpider5 = 0.0;
 
-
-
-
-// Var animate helicopter
+// Var animate
 float rotHelHelY = 0.0;
 float rotHelHelBack = 0.0;
-
-// Var animate lambo dor
-int stateDoor = 0;
-float dorRotCount = 0.0;
 
 // Lamps position
 std::vector<glm::vec3> lamp1Position = {
@@ -567,8 +560,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	boxViewDepth.setShader(&shaderViewDepth);
 
 
-	// Mayow
-	//mayowModelAnimate.loadModel("../models/mayow/personaje2.fbx");
+	// Main
 	mayowModelAnimate.loadModel("../Elementos_proyecto/main_animated/main_animated.fbx");
 	mayowModelAnimate.setShader(&shaderMulLighting);
 
@@ -657,7 +649,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	// Verifica si se pudo abrir la textura
 	if (textureCesped.getData()) {
-		// Transferis los datos de la imagen a memoria
+		// Transferir los datos de la imagen a memoria
 		// Tipo de textura, Mipmaps, Formato interno de openGL, ancho, alto, Mipmaps,
 		// Formato interno de la libreria de la imagen, el tipo de dato y al apuntador
 		// a los datos
@@ -785,7 +777,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	else 
 		std::cout << "Fallo la carga de textura" << std::endl;
 	textureIntro2.freeImage(); // Liberamos memoria
-
 	
 
 	// Definiendo la textura
@@ -1153,14 +1144,10 @@ bool processInput(bool continueApplication) {
 		if(playerLife  == 0){
 			textureActivaID = textureScreenGOID;
 			psi = false;
-			//sleep(6);
-			//exitApp = true;
 		}
 		if(playerLife  == -1){
 			textureActivaID = textureScreenWNID;
 			psi = false;
-			//sleep(6);
-			//exitApp = true;
 		}
 	}
 
@@ -1223,7 +1210,7 @@ bool processInput(bool continueApplication) {
 		playing = true;
 	}
 
-	// Controles de mayow
+	// Controles de main
 	if (modelSelected == 0 && glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
 		modelMatrixMayow = glm::rotate(modelMatrixMayow, 0.02f, glm::vec3(0, 1, 0));
 		animationMayowIndex = 2;
@@ -1273,7 +1260,7 @@ void prepareScene(){
 
 	modelTiendasSalida.setShader(&shaderMulLighting);
 
-	//Mayow
+	//Main
 	mayowModelAnimate.setShader(&shaderMulLighting);
 	spiderModelAnimate.setShader(&shaderMulLighting);
 
@@ -1300,8 +1287,7 @@ void prepareDepthScene(){
 
 	modelTiendasSalida.setShader(&shaderDepth);
 
-
-	//Mayow
+	//Main
 	mayowModelAnimate.setShader(&shaderDepth);
 	spiderModelAnimate.setShader(&shaderDepth);
 
@@ -1394,20 +1380,6 @@ void renderSolidScene(){
 	modelMuebles.render(matrixModelMuebles34);
 	modelMuebles.render(matrixModelMuebles35);
 	modelMuebles.render(matrixModelMuebles36);
-	/*
-	modelMuebles.render(matrixModelMuebles37);
-	modelMuebles.render(matrixModelMuebles38);
-	modelMuebles.render(matrixModelMuebles39);
-	modelMuebles.render(matrixModelMuebles40);
-	modelMuebles.render(matrixModelMuebles41);
-	modelMuebles.render(matrixModelMuebles42);
-	modelMuebles.render(matrixModelMuebles43);
-	modelMuebles.render(matrixModelMuebles44);
-	modelMuebles.render(matrixModelMuebles45);
-	*/
-	//modelMuebles.render(matrixModelMuebles46);
-	//modelMuebles.render(matrixModelMuebles47);
-	//modelMuebles.render(matrixModelMuebles48);
 
 //Cover
 	modelMuebles.render(matrixModelMueblesExt1);
@@ -1450,12 +1422,8 @@ void renderSolidScene(){
 	//ARAÑA
 	modelMatrixSpider[3][1] = terrain.getHeightTerrain(modelMatrixSpider[3][0], modelMatrixSpider[3][2]);
 	glm::mat4 modelMatrixSpiderBody = glm::mat4(modelMatrixSpider);
-	//modelMatrixSpiderBody = glm::scale(modelMatrixSpiderBody, glm::vec3(1.50f));
-	//spiderModelAnimate.setAnimationIndex(1);
-	//spiderModelAnimate.render(modelMatrixSpiderBody);
 	spiderModelAnimate.setAnimationIndex(animationSpiderIndex);
 	spiderModelAnimate.render(modelMatrixSpider);
-	//animationSpiderIndex = 2;
 
 	//ARAÑA 2
 	modelMatrixSpider2[3][1] = terrain.getHeightTerrain(modelMatrixSpider2[3][0], modelMatrixSpider2[3][2]);
@@ -1550,8 +1518,6 @@ void applicationLoop() {
 	glm::vec3 axis;
 	glm::vec3 target;
 	float angleTarget;
-
-	
 				
 
 	//Matrices de tiendas (1) corto, (2) largo
@@ -1718,21 +1684,9 @@ void applicationLoop() {
 	//x=76
 	matrixModelMuebles45 = glm::translate(matrixModelMuebles45, glm::vec3(-78.70f, 0.99f, -11.2f));
 	matrixModelMuebles45 = glm::scale(matrixModelMuebles45, glm::vec3(0.012f));
-	/*
-	matrixModelMuebles46 = glm::translate(matrixModelMuebles46, glm::vec3(-76.0, 0.99f, -10.2f));
-	matrixModelMuebles46 = glm::scale(matrixModelMuebles46, glm::vec3(0.012f));
-	matrixModelMuebles47 = glm::translate(matrixModelMuebles47, glm::vec3(-76.0f, 0.99f, -10.2f));
-	matrixModelMuebles47 = glm::scale(matrixModelMuebles47, glm::vec3(0.012f));
-	matrixModelMuebles48 = glm::translate(matrixModelMuebles48, glm::vec3(-76.0f, 0.99f, -10.2f));
-	matrixModelMuebles48 = glm::scale(matrixModelMuebles48, glm::vec3(0.012f));
-	*/
 
 //Cover line for x=-17 & x=8 & x=76
 //x=8
-	/*
-	matrixModelMueblesExt = glm::translate(matrixModelMueblesExt, glm::vec3(0.0f, 0.99f, 27.2f));
-	matrixModelMueblesExt = glm::scale(matrixModelMueblesExt, glm::vec3(0.012f));
-	*/
 	matrixModelMueblesExt1 = glm::translate(matrixModelMueblesExt1, glm::vec3(8.90f, 0.99f, 1.0f));
 	matrixModelMueblesExt1 = glm::scale(matrixModelMueblesExt1, glm::vec3(0.012f));
 	matrixModelMueblesExt2 = glm::translate(matrixModelMueblesExt2, glm::vec3(8.60, 0.99f, 6.2f));
@@ -1820,15 +1774,12 @@ void applicationLoop() {
 
 	//Enemigo 1 ARAÑA
 	modelMatrixSpider = glm::translate(modelMatrixSpider, glm::vec3(5.0f, 2.5f, 30.1f));
-	//modelMatrixSpider = glm::rotate(modelMatrixSpider, glm::radians(180.0f), glm::vec3(0, 1, 0));
-	//modelMatrixSpider = glm::rotate(modelMatrixSpider, glm::radians(180.0f), glm::vec3(1, 0, 0));
 	modelMatrixSpider = glm::scale(modelMatrixSpider, glm:: vec3(0.010f));
 
 	//con z se pone de cabeza
 	
 	//Enemigo 2 ARAÑA
 	modelMatrixSpider2 = glm::translate(modelMatrixSpider2, glm::vec3(-55.5f, 2.5f, 30.1f));
-	//modelMatrixSpider2 = glm::rotate(modelMatrixSpider2, glm::radians(180.0f), glm::vec3(0, 0, 0));
 	modelMatrixSpider2 = glm::scale(modelMatrixSpider2, glm:: vec3(0.010f));
 	
 
@@ -1839,12 +1790,10 @@ void applicationLoop() {
 
 	//Enemigo 4 ARAÑA
 	modelMatrixSpider4 = glm::translate(modelMatrixSpider4, glm::vec3(-80.90f, 2.5f, 30.0f));
-	//modelMatrixSpider4 = glm::rotate(modelMatrixSpider4, glm::radians(180.0f), glm::vec3(0, 0, 0));
 	modelMatrixSpider4 = glm::scale(modelMatrixSpider4, glm:: vec3(0.010f));
 
 	//Enemigo 5 ARAÑA
 	modelMatrixSpider5 = glm::translate(modelMatrixSpider5, glm::vec3(-62.20f, 2.5f, -3.2f));
-	//modelMatrixSpider5 = glm::rotate(modelMatrixSpider5, glm::radians(180.0f), glm::vec3(0, 0, 0));
 	modelMatrixSpider5 = glm::scale(modelMatrixSpider5, glm:: vec3(0.010f));
 	
 	lastTime = TimeManager::Instance().GetTime();
@@ -1938,19 +1887,6 @@ void applicationLoop() {
 		/*******************************************
 		 * Propiedades Luz direccional
 		 *******************************************/
-		/*
-		shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(camera->getPosition()));
-		shaderMulLighting.setVectorFloat3("directionalLight.light.ambient", glm::value_ptr(glm::vec3(0.2, 0.2, 0.2)));
-		shaderMulLighting.setVectorFloat3("directionalLight.light.diffuse", glm::value_ptr(glm::vec3(0.5, 0.5, 0.5)));
-		shaderMulLighting.setVectorFloat3("directionalLight.light.specular", glm::value_ptr(glm::vec3(0.2, 0.2, 0.2)));
-		shaderMulLighting.setVectorFloat3("directionalLight.direction", glm::value_ptr(glm::vec3(-0.707106781, -0.707106781, 0.0)));
-
-		shaderTerrain.setVectorFloat3("viewPos", glm::value_ptr(camera->getPosition()));
-		shaderTerrain.setVectorFloat3("directionalLight.light.ambient", glm::value_ptr(glm::vec3(0.2, 0.2, 0.2)));
-		shaderTerrain.setVectorFloat3("directionalLight.light.diffuse", glm::value_ptr(glm::vec3(0.5, 0.5, 0.5)));
-		shaderTerrain.setVectorFloat3("directionalLight.light.specular", glm::value_ptr(glm::vec3(0.2, 0.2, 0.2)));
-		shaderTerrain.setVectorFloat3("directionalLight.direction", glm::value_ptr(glm::vec3(-0.707106781, -0.707106781, 0.0)));
-*/
 		shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(camera->getPosition()));
 		shaderMulLighting.setVectorFloat3("directionalLight.light.ambient", glm::value_ptr(glm::vec3(0.002, 0.002, 0.002)));
 		shaderMulLighting.setVectorFloat3("directionalLight.light.diffuse", glm::value_ptr(glm::vec3(0.005, 0.005, 0.005)));
@@ -2069,23 +2005,7 @@ void applicationLoop() {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 		/*******************************************
-		 * Debug to view the texture view map
-		 *******************************************/
-		// reset viewport
-		/*glViewport(0, 0, screenWidth, screenHeight);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// render Depth map to quad for visual debugging
-		shaderViewDepth.setMatrix4("projection", 1, false, glm::value_ptr(glm::mat4(1.0)));
-		shaderViewDepth.setMatrix4("view", 1, false, glm::value_ptr(glm::mat4(1.0)));
-		shaderViewDepth.setFloat("near_plane", near_plane);
-		shaderViewDepth.setFloat("far_plane", far_plane);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, depthMap);
-		boxViewDepth.setScale(glm::vec3(2.0, 2.0, 1.0));
-		boxViewDepth.render();*/
-
-		/*******************************************
-		 * 2.- We render the normal objects
+		 * Render the normal objects
 		 *******************************************/
 		glViewport(0, 0, screenWidth, screenHeight);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -2212,7 +2132,6 @@ void applicationLoop() {
 		addOrUpdateColliders(collidersOBB, "Spider5", Spider5Collider, modelMatrixSpider5);
 
 
-
 		// Collider de tiendas (parte menor)
 		glm::mat4 modelMatrixColliderTiendas1= glm::mat4(matrixModelTiendas1);
 		AbstractModel::OBB Tiendas1Collider;
@@ -2286,7 +2205,7 @@ void applicationLoop() {
 
 
 		// Botes de basura (par)
-		//POr alguna razon el collider es mas largo de lo que deberia ser, asi que lo estoy haciendo
+		//Por alguna razon el collider es mas largo de lo que deberia ser, asi que lo estoy haciendo
 		//mas chico en la linea de BasuraCollider.e
 		glm::mat4 modelMatrixColliderBasura= glm::mat4(matrixModelBasura);
 		AbstractModel::OBB BasuraCollider;
@@ -3004,15 +2923,12 @@ void applicationLoop() {
 						}						
 					}
 					if(jt->first == "TiendasSalida" && it->first == "mayow" && llave){
-						//std::cout << "AAAAAAAAAAAAAAAA"<< std::endl;
 						playerLife = -1;
 						alSourceStopv(6, source);
 						
 					}
 					for(int i=0; i<5; i++){
 						if(jt->first == spiderSets[i] && it->first == "mayow" && !spiderCollision){
-						//std::cout << "AAAAAAAAAAAAAAAA"<< std::endl;
-						//sleep(7);
 						if(!spiderCollision){
 							numCollisionsSpider = 1;
 							spiderCollision=true;
@@ -3023,10 +2939,7 @@ void applicationLoop() {
 							}if(spiderCollision4){
 								numCollisionsSpider = 4;
 							}
-							//std::cout << "EEEEEEEEEEEEEEE "<< numCollisionsSpider << std::endl;	
 						}
-						
-						//time_after_loop_ends = time(NULL);
 	
 						}
 					}
@@ -3038,8 +2951,6 @@ void applicationLoop() {
 			addOrUpdateCollisionDetection(collisionDetection, it->first, isColision);
 		}		
 
-		//int time_diff = time_after_loop_ends - time_before_loop_begins;
-//&& time_diff>3
 		if(spiderCollision && !isColision){
 			if(numCollisionsSpider == 1){
 				playerLife = 3;
@@ -3053,16 +2964,11 @@ void applicationLoop() {
 			}else if(numCollisionsSpider == 4){
 				playerLife = 0;
 				alSourceStopv(6, source);
-				//sleep(3);
-				//exitApp = true;
 			}
 			spiderCollision = false;
 		}
 		if(playerLife == -1){
 			alSourceStopv(6, source);
-			//sleep(3);
-			//exitApp = true;
-			
 		}
 
 
@@ -3138,20 +3044,6 @@ void applicationLoop() {
 				<< std::endl;
 			}
 		}
-
-/*
-		alSourcePlay(source[0]);
-		//ABOUT SOUNDS
-		
-		if(playing == true){
-				alSourcePlay(source[0]);
-				//playing = false;
-		}
-		if(playing == false){
-				alSourcePause(source[0]);
-				//playing = true;
-			}
-		*/
 		
 		/**********Maquinas de estado*************/
 		
@@ -3160,13 +3052,11 @@ void applicationLoop() {
 		switch (stateSpider1)
 			{
 			case 0:
-			//Case 0 sirve para que el carro avance en el carril interior
 				maxAdvanceSpider = -50.3f;
 				stateSpider1 = 1;
 				break;
 			
 			case 1:
-			//Case 1 es para definir cuando el auto avanza en el carril
 				modelMatrixSpider=glm::translate(modelMatrixSpider, glm::vec3(0.0,0.0,advanceCountSpider));
 				advanceCountSpider-=avanceSpider;
 				if(advanceCountSpider<maxAdvanceSpider){
@@ -3176,9 +3066,9 @@ void applicationLoop() {
 				break;
 
 			case 2:
-			//Case 2 es para definir cuando el auto esta dando vuelta
+				//Case 2 es para definir cuando esta dando vuelta
 				modelMatrixSpider = glm::translate(modelMatrixSpider, glm::vec3(0,0,0.025));
-			//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
+				//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
 				modelMatrixSpider = glm::rotate(modelMatrixSpider,glm::radians(rotSpider),glm::vec3(0.0f, 1.0f, 0.0f));
 				rotCountSpider+=rotSpider;
 				//Limitamos la rotacion
@@ -3197,13 +3087,11 @@ void applicationLoop() {
 		switch (stateSpider2)
 			{
 			case 0:
-			//Case 0 sirve para que el carro avance en el carril interior
 				maxAdvanceSpider2 = -50.3f;
 				stateSpider2 = 1;
 				break;
 			
 			case 1:
-			//Case 1 es para definir cuando el auto avanza en el carril
 				modelMatrixSpider2=glm::translate(modelMatrixSpider2, glm::vec3(0.0,0.0,advanceCountSpider2));
 				advanceCountSpider2-=avanceSpider2;
 				if(advanceCountSpider2<maxAdvanceSpider2){
@@ -3214,9 +3102,8 @@ void applicationLoop() {
 				break;
 
 			case 2:
-			//Case 2 es para definir cuando el auto esta dando vuelta
 				//modelMatrixSpider = glm::translate(modelMatrixSpider, glm::vec3(0,0,0.025));
-			//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
+				//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
 				modelMatrixSpider2 = glm::rotate(modelMatrixSpider2,glm::radians(rotSpider2),glm::vec3(0.0f, 1.0f, 0.0f));
 				rotCountSpider2+=rotSpider2;
 				//Limitamos la rotacion
@@ -3235,13 +3122,11 @@ void applicationLoop() {
 			switch (stateSpider3)
 			{
 			case 0:
-			//Case 0 sirve para que el carro avance en el carril interior
 				maxAdvanceSpider3 = -70.3f;
 				stateSpider3 = 1;
 				break;
 			
 			case 1:
-			//Case 1 es para definir cuando el auto avanza en el carril
 				modelMatrixSpider3=glm::translate(modelMatrixSpider3, glm::vec3(0.0,0.0,advanceCountSpider3));
 				advanceCountSpider3-=avanceSpider3;
 				if(advanceCountSpider3<maxAdvanceSpider3){
@@ -3251,9 +3136,8 @@ void applicationLoop() {
 				break;
 
 			case 2:
-			//Case 2 es para definir cuando el auto esta dando vuelta
 				modelMatrixSpider3 = glm::translate(modelMatrixSpider3, glm::vec3(0,0,0.045));
-			//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
+				//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
 				modelMatrixSpider3 = glm::rotate(modelMatrixSpider3,glm::radians(rotSpider3),glm::vec3(0.0f, 1.0f, 0.0f));
 				rotCountSpider3+=rotSpider3;
 				//Limitamos la rotacion
@@ -3272,13 +3156,11 @@ void applicationLoop() {
 			switch (stateSpider4)
 			{
 			case 0:
-			//Case 0 sirve para que el carro avance en el carril interior
 				maxAdvanceSpider4 = -50.3f;
 				stateSpider4 = 1;
 				break;
 			
 			case 1:
-			//Case 1 es para definir cuando el auto avanza en el carril
 				modelMatrixSpider4=glm::translate(modelMatrixSpider4, glm::vec3(0.0,0.0,advanceCountSpider4));
 				advanceCountSpider4-=avanceSpider4;
 				if(advanceCountSpider4<maxAdvanceSpider4){
@@ -3289,9 +3171,8 @@ void applicationLoop() {
 				break;
 
 			case 2:
-			//Case 2 es para definir cuando el auto esta dando vuelta
 				//modelMatrixSpider = glm::translate(modelMatrixSpider, glm::vec3(0,0,0.025));
-			//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
+				//Checamos que el Spider se pueda rotar en base de y, utilizando la variable rotSpider
 				modelMatrixSpider4 = glm::rotate(modelMatrixSpider4,glm::radians(rotSpider4),glm::vec3(0.0f, 1.0f, 0.0f));
 				rotCountSpider4+=rotSpider4;
 				//Limitamos la rotacion
@@ -3306,7 +3187,6 @@ void applicationLoop() {
 			default:
 				break;
 			}
-
 			
 
 		// Constantes de animaciones
@@ -3349,17 +3229,9 @@ void applicationLoop() {
 		source5Pos[1] = matrixModelTelevision3Ext[3].y;
 		source5Pos[2] = matrixModelTelevision3Ext[3].z;
 		alSourcefv(source[5], AL_POSITION, source5Pos);
-
-		/*
-		source5Pos[0] = matrixModelTelevision3Ext[3].x;
-		source5Pos[1] = matrixModelTelevision3Ext[3].y;
-		source5Pos[2] = matrixModelTelevision3Ext[3].z;
-		alSourcefv(source[0], AL_POSITION, source5Pos);
-		*/
-
 		
 
-		// Listener for the Thris person camera
+		// Listener for the Third person camera
 		listenerPos[0] = modelMatrixMayow[3].x;
 		listenerPos[1] = modelMatrixMayow[3].y;
 		listenerPos[2] = modelMatrixMayow[3].z;
@@ -3374,18 +3246,7 @@ void applicationLoop() {
 		listenerOri[3] = upModel.x;
 		listenerOri[4] = upModel.y;
 		listenerOri[5] = upModel.z;
-
-		// Listener for the First person camera
-		// listenerPos[0] = camera->getPosition().x;
-		// listenerPos[1] = camera->getPosition().y;
-		// listenerPos[2] = camera->getPosition().z;
-		// alListenerfv(AL_POSITION, listenerPos);
-		// listenerOri[0] = camera->getFront().x;
-		// listenerOri[1] = camera->getFront().y;
-		// listenerOri[2] = camera->getFront().z;
-		// listenerOri[3] = camera->getUp().x;
-		// listenerOri[4] = camera->getUp().y;
-		// listenerOri[5] = camera->getUp().z;
+		
 		alListenerfv(AL_ORIENTATION, listenerOri);
 
 		for(unsigned int i = 0; i < sourcesPlay.size(); i++){
