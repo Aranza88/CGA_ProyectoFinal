@@ -526,7 +526,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	boxCollider.init();
 	boxCollider.setShader(&shader);
-	//boxCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
 	boxCollider.setColor(glm::vec4(0.0, 0.0, 0.0, 0.0));
 
 	sphereCollider.init();
@@ -3246,7 +3245,7 @@ void applicationLoop() {
 		listenerOri[3] = upModel.x;
 		listenerOri[4] = upModel.y;
 		listenerOri[5] = upModel.z;
-		
+
 		alListenerfv(AL_ORIENTATION, listenerOri);
 
 		for(unsigned int i = 0; i < sourcesPlay.size(); i++){

@@ -1,0 +1,8 @@
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/CMakeFiles/edit_cache.dir
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/CMakeFiles/rebuild_cache.dir
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/CGALib/CMakeFiles/CGALib.dir
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/CGALib/CMakeFiles/edit_cache.dir
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/CGALib/CMakeFiles/rebuild_cache.dir
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/Proyecto/CMakeFiles/Proyecto.dir
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/Proyecto/CMakeFiles/edit_cache.dir
+D:/Uni/GraficaAvanzada/ProyectoFinal/build/Proyecto/CMakeFiles/rebuild_cache.dir
