@@ -85,8 +85,7 @@ std::string chairSets[56]  = {
 	"Muebles","Muebles2","Muebles3","Muebles4","Muebles5","Muebles6","Muebles7","Muebles8","Muebles9","Muebles10",
 	"Muebles11","Muebles12","Muebles13","Muebles14","Muebles15","Muebles16","Muebles17","Muebles18","Muebles19","Muebles20",
 	"Muebles21","Muebles22","Muebles23","Muebles24","Muebles25","Muebles26","Muebles27","Muebles28","Muebles29","Muebles30",
-	"Muebles31","Muebles32","Muebles33","Muebles34","Muebles35","Muebles36","Muebles37","Muebles38","Muebles39","Muebles40",
-	"Muebles41","Muebles42","Muebles43","Muebles44","Muebles45","Muebles46","Muebles47","Muebles48","MueblesExt1","MueblesExt2",
+	"Muebles31","Muebles32","Muebles33","Muebles34","Muebles35","Muebles36","MueblesExt1","MueblesExt2",
 	"MueblesExt3","MueblesExt4","MueblesExt5","MueblesExt6","MueblesExt7","MueblesExt8"
 };
 std::string spiderSets[5] = {
@@ -642,7 +641,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	}
 
 	// Definiendo la textura a utilizar
-	Texture textureCesped("../Elementos_proyecto/Textures/tiles.png");
+	Texture textureCesped("../Textures/tiles.png");
 	// Carga el mapa de bits (FIBITMAP es el tipo de dato de la libreria)
 	textureCesped.loadImage();
 	// Creando la textura con id 1
@@ -673,7 +672,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	// Defininiendo texturas del mapa de mezclas
 	// Definiendo la textura
-	Texture textureR("../Elementos_proyecto/Textures/mud.png");
+	Texture textureR("../Textures/mud.png");
 	textureR.loadImage(); // Cargar la textura
 	glGenTextures(1, &textureTerrainRID); // Creando el id de la textura del landingpad
 	glBindTexture(GL_TEXTURE_2D, textureTerrainRID); // Se enlaza la textura
@@ -692,7 +691,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	textureR.freeImage(); // Liberamos memoria
 
 	// Definiendo la textura
-	Texture textureG("../Elementos_proyecto/Textures/grassFlowers.png");
+	Texture textureG("../Textures/grassFlowers.png");
 	textureG.loadImage(); // Cargar la textura
 	glGenTextures(1, &textureTerrainGID); // Creando el id de la textura del landingpad
 	glBindTexture(GL_TEXTURE_2D, textureTerrainGID); // Se enlaza la textura
@@ -711,7 +710,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	textureG.freeImage(); // Liberamos memoria
 
 	// Definiendo la textura
-	Texture textureB("../Elementos_proyecto/Textures/path.png");
+	Texture textureB("../Textures/path.png");
 	textureB.loadImage(); // Cargar la textura
 	glGenTextures(1, &textureTerrainBID); // Creando el id de la textura del landingpad
 	glBindTexture(GL_TEXTURE_2D, textureTerrainBID); // Se enlaza la textura
@@ -730,7 +729,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	textureB.freeImage(); // Liberamos memoria
 
 	// Definiendo la textura
-	Texture textureBlendMap("../Elementos_proyecto/Textures/blendMap_black.png");
+	Texture textureBlendMap("../Textures/blendMap_black.png");
 	textureBlendMap.loadImage(); // Cargar la textura
 	glGenTextures(1, &textureTerrainBlendMapID); // Creando el id de la textura del landingpad
 	glBindTexture(GL_TEXTURE_2D, textureTerrainBlendMapID); // Se enlaza la textura
@@ -2986,29 +2985,33 @@ void applicationLoop() {
 					isColision = true;
 					for(int i=0; i<=56;i++){
 						if(jt->first == chairSets[i]){
-						std::cout << "COLISION CON MUEBLE:  " << jt->first << std::endl;
-						currentChair = jt->first;
-						//Con funcion random
+							std::cout << "COLISION CON MUEBLE:  " << jt->first << std::endl;
+							currentChair = jt->first;
+							//Con funcion random
+							
+							if(jt->first == chairSets[v1] && it->first == "mayow"){
+								textoNoticia = "Has encontrado la llave. Escapa.";
+								llave = true;
+							}
+						
+						//De prueba
 						/*
-						if(jt->first == chairSets[v1] && it->first == "mayow"){
+						if(jt->first == "Muebles17" && it->first == "mayow"){
 							textoNoticia = "Has encontrado la llave. Escapa.";
 							llave = true;
 						}
 						*/
-						//De prueba
-						if(jt->first == "MueblesExt1" && it->first == "mayow"){
-							textoNoticia = "Has encontrado la llave. Escapa.";
-							llave = true;
-						}
-
 						}						
 					}
 					if(jt->first == "TiendasSalida" && it->first == "mayow" && llave){
+						//std::cout << "AAAAAAAAAAAAAAAA"<< std::endl;
 						playerLife = -1;
 						alSourceStopv(6, source);
+						
 					}
 					for(int i=0; i<5; i++){
 						if(jt->first == spiderSets[i] && it->first == "mayow" && !spiderCollision){
+						//std::cout << "AAAAAAAAAAAAAAAA"<< std::endl;
 						//sleep(7);
 						if(!spiderCollision){
 							numCollisionsSpider = 1;
@@ -3020,8 +3023,11 @@ void applicationLoop() {
 							}if(spiderCollision4){
 								numCollisionsSpider = 4;
 							}
+							//std::cout << "EEEEEEEEEEEEEEE "<< numCollisionsSpider << std::endl;	
 						}
+						
 						//time_after_loop_ends = time(NULL);
+	
 						}
 					}
 					
